@@ -1,12 +1,27 @@
-async function start()
+const channelInput = document.querySelector("#channel-input");
+let speech = new SpeechSynthesisUtterance();
+
+function start()
 {
-    const availableVoicesElement = document.querySelector('#available-voices');
-    const voices = speechSynthesis.getVoices();
-    console.log(voices);
-    availableVoicesElement.textContent = voices.reduce((a, c, index) => a += `${index}: ${c.voiceURI}\n`);
+    const options = 
+    {
+        channels: [
+            channelInput.value
+        ]
+    }
+    const client = tmi.Client(options);
+    client.connect();
+
+    client.on('message', (channel, tags, message, self) => 
+    {
+        const displayName = tags['display-name'];
+        console.log(`${displayName}: ${message}`);
+        speak(`${displayName} disse ${message}`);
+    });
 }
 
-
-let speech = new SpeechSynthesisUtterance();
-speech.text = "olá mundo";
-speechSynthesis.speak(speech);
+function speak(text)
+{
+    speech.text = text;
+    speechSynthesis.speak(speech);
+}
