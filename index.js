@@ -1,5 +1,5 @@
 const channelInput = document.querySelector("#channel-input");
-let speech = new SpeechSynthesisUtterance();
+
 
 function start()
 {
@@ -22,6 +22,6 @@ function start()
 
 function speak(text)
 {
-    speech.text = text;
+    let speech = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(speech);
 }
