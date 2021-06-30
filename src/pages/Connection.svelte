@@ -35,7 +35,7 @@ import { speak } from "../tts";
             twitchMessages.update(messages => [...messages, receivedMessage]);
             twitchChannel.set(message);
 
-            speak(`${author} disse ${message}`);
+            speak(`${author} says ${message}`);
         });
         
         client.on('join', () => {
