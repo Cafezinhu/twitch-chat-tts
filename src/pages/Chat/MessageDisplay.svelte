@@ -22,6 +22,6 @@
 <style>
     main{
         overflow-y: auto;
-        max-height: 80%;
+        max-height: 80vh;
     }
 </style>
