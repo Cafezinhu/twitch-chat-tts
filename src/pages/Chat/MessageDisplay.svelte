@@ -13,15 +13,22 @@
 
 
 
-<main>
-    {#each messages as message}
-        <Message displayName={message.author} color={message.color} content={message.content}/>
-    {/each}
-</main>
+<div class="content">
+    <div class="chat">
+        {#each messages as message}
+            <Message displayName={message.author} color={message.color} content={message.content}/>
+        {/each}
+    </div>
+</div>
 
 <style>
-    main{
+    .content{
         overflow-y: auto;
         max-height: 80vh;
+    }
+    .chat{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 </style>
