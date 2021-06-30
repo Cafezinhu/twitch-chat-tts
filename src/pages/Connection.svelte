@@ -3,12 +3,26 @@
     import tmi from 'tmi.js';
     import { twitchChannel, twitchClient, twitchMessages } from '../stores/twitch';
     import { useNavigate } from "svelte-navigator";
-import { speak } from "../tts";
+    import { speak } from "../tts";
 
     const navigate = useNavigate();
 
+    let input: HTMLInputElement;
     let channel = "";
 
+    $: {
+        if(input)
+        {
+            input.addEventListener('keydown', key =>
+            {
+                if(key.code == 'Enter')
+                {
+                    connect();
+                }
+            });
+        }
+    }
+    
     const connect = () => 
     {
         if(channel.trim() === "") return;
@@ -49,7 +63,7 @@ import { speak } from "../tts";
     
 </script>
 
-<input type="text" bind:value={channel}>
+<input bind:this={input} type="text" bind:value={channel}>
 <button on:click={connect}>Connect</button>
 
 <style>
