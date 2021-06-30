@@ -23,6 +23,5 @@
     main{
         overflow-y: auto;
         max-height: 80%;
-        border: 1px solid red;
     }
 </style>
